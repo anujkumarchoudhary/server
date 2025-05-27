@@ -1,72 +1,9 @@
 const express = require('express');
 const jwt = require("jsonwebtoken");
-const User = require("../modules/user"); // Capitalize model name
+const User = require("../modules/user"); 
 const auth = require('../middleware/authMiddleware');
 const bcrypt = require("bcrypt");
 const router = express.Router();
-/**
- * @swagger
- * /api/auth/register:
- *   post:
- *     summary: Register a new user
- *     tags: [Auth]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required:
- *               - email
- *               - password
- *             properties:
- *               email:
- *                 type: string
- *                 example: user@example.com
- *               password:
- *                 type: string
- *                 example: strongpassword123
- *     responses:
- *       200:
- *         description: JWT token returned
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 token:
- *                   type: string
- */
-/**
- * @swagger
- * /api/auth/login:
- *   post:
- *     summary: Login user
- *     tags: [Auth]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required:
- *               - email
- *               - password
- *             properties:
- *               email:
- *                 type: string
- *                 example: user@example.com
- *               password:
- *                 type: string
- *                 example: strongpassword123
- *     responses:
- *       200:
- *         description: JWT token returned
- *       400:
- *         description: Invalid credentials
- *       404:
- *         description: User not found
- */
 
 router.get("/", async (req, res)=>{
     try{
@@ -77,6 +14,7 @@ router.get("/", async (req, res)=>{
         console.log("err", err)
     }
 })
+
 router.post("/register", async (req, res) => {
     const { email, password } = req.body;
 

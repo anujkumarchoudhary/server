@@ -8,9 +8,10 @@ const newsRoute = require('./routes/news')
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require('./swagger')
 const path = require("path")
+require('./cronjobs/deletecronjobs')
 dotenv.config()
 app.use(express.json())
-
+//agretion, indexing, cron job, cors, nodemailer, MV 
 // Serve Swagger docs at /api-docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
@@ -23,7 +24,8 @@ app.use("/api/news", newsRoute);
 //db connect
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  autoIndex: true
 })
 
 .then(()=>{

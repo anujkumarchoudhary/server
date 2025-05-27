@@ -4,7 +4,7 @@ const News = require('../modules/news')
 
 router.get("/", async (req, res) => {
     try {
-        const news = await News.find()
+        const news = await News.find().sort({ createdAt: -1 }).limit(5);
         res.json({ message: "fetched all news", news })
     }
     catch (err) {
@@ -36,6 +36,43 @@ router.get("/getSingle/:id", async (req, res) => {
         console.log("err", err)
     }
 })
+
+router.get("/aggregation/newsCountByUser", async (req, res) => {
+    try {
+        const result = await News.aggregate([
+            {
+                $group: {
+                    _id: "$user", // group by user
+                    newsCount: { $sum: 1 },
+                }
+            },
+            {
+                $lookup: {
+                    from: "users", // collection name
+                    localField: "_id",
+                    foreignField: "_id",
+                    as: "userDetails"
+                }
+            },
+            {
+                $unwind: "$userDetails"
+            },
+            {
+                $project: {
+                    _id: 0,
+                    userId: "$userDetails._id",
+                    userName: "$userDetails.name",
+                    newsCount: 1
+                }
+            }
+        ]);
+        res.json({ message: "News count by user", result });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: err });
+    }
+});
+
 
 router.post("/create", async (req, res) => {
     const { title, description, user } = req.body;
@@ -79,6 +116,14 @@ router.delete("/delete/:id", async (req, res) => {
         console.log("err", err)
     }
 
+})
+router.delete("/delete/old", async (req, res)=>{
+    try{
+
+    }
+    catch(err){
+        console.log("error", err)
+    }
 })
 
 module.exports = router;
