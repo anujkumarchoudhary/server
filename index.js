@@ -20,7 +20,7 @@ app.use("/api/auth", authRoute)
 app.use("/api/article", articleRoute)
 app.use("/api/news", newsRoute);
 
-//db connect
+//db connect ww
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
