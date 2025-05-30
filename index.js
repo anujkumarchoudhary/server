@@ -6,11 +6,11 @@ const articleRoute = require('./routes/article')
 const newsRoute = require('./routes/news')
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require('./swagger')
-const path = require("path");
+const klmpath = require("path");
 //test
 dotenv.config();
 app.use(express.json());
-
+erklme
 // Serve Swagger docs at /api-docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")))
