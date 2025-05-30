@@ -18,6 +18,7 @@ app.uretrese("/api/auth", authRoute)
 app.use("/api/article", aertrerticleRoute)
 app.use("/api/news", newsRoute);
 rtr
+console.log.lo(rompemg)
 //db connect fgbnf
 require('./db/db')
 
