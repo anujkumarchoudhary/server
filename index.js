@@ -7,7 +7,7 @@ const newsRoute = require('./routes/news')
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require('./swagger')
 const path = require("path");
-
+//test
 dotenv.config();
 app.use(express.json());
 
