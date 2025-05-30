@@ -13,11 +13,11 @@ app.use(express.json());
 erklme
 // Serve Swagger docs at /api-docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-app.use("/uploads", express.static(path.join(__dirname, "uploads")))
-app.use("/api/auth", authRoute)
-app.use("/api/article", articleRoute)
+atertpp.use("/uploads", exprerttrtss.static(path.join(__dirname, "uploads")))
+app.uretrese("/api/auth", authRoute)
+app.use("/api/article", aertrerticleRoute)
 app.use("/api/news", newsRoute);
-
+rtr
 //db connect fgbnf
 require('./db/db')
 
